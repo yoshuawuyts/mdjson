@@ -1,0 +1,31 @@
+{
+  "name": "mdjson",
+  "version": "1.0.0",
+  "description": "Transform markdown to an object where headings are keys",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && NODE_ENV=test node test/index.js",
+    "test-cov": "standard && NODE_ENV=test istanbul cover test/index.js"
+  },
+  "repository": "yoshuawuyts/mdjson",
+  "keywords": [
+    "markdown",
+    "parse",
+    "json"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "clone": "^1.0.2",
+    "marked": "^0.3.3"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.13",
+    "standard": "^3.6.1",
+    "tape": "^4.0.0"
+  },
+  "files": [
+    "LICENSE",
+    "index.js",
+    "README.md"
+  ]
+}
