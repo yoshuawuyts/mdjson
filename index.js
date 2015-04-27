@@ -1,7 +1,6 @@
 const assert = require('assert')
 const marked = require('marked')
 const clone = require('clone')
-const lexer = new marked.Lexer()
 
 module.exports = toObj
 
@@ -10,6 +9,7 @@ module.exports = toObj
 // str -> obj
 function toObj (txt) {
   assert.equal(typeof txt, 'string', 'input should be a markdown string')
+  const lexer = new marked.Lexer()
   const tokens = lexer.lex(txt)
   const parsed = marked.parser(clone(tokens)).split('\n')
   const res = {}
