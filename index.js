@@ -16,14 +16,20 @@ function toObj (txt) {
   var key = ''
 
   tokens.forEach(function (token, i) {
-    if (i === 0) assert.equal(token.type, 'heading', 'files should start with a heading')
     if (token.type === 'heading') {
       key = token.text
-      res[key] = {html: '', raw: ''}
+      res[key] = {html: '', raw: []}
       return
     }
+
+    if (!key) return
+
     res[key].html += parsed[i]
-    res[key].raw += token.text
+    res[key].raw.push(token.text)
+  })
+
+  Object.keys(res).forEach(function (key) {
+    res[key].raw = res[key].raw.join('\n')
   })
 
   return res

@@ -17,6 +17,10 @@ $ npm install mdjson
 const mdjson = require('mdjson')
 
 mdjson(`
+  This part (before any headers) is ignored. Feel free
+  to use this section for commentary on the file's purpose,
+  if you wish.
+
   ## my heading
   oh wow, amazing
 
