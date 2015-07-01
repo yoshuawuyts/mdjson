@@ -34,12 +34,12 @@ test('should handle multiple paragraphs', function (t) {
 
   t.deepEqual(tree, {
     'first heading': {
-      html: '<p>  Hi there!</p>\n<p>This content runs over multiple lines...</p>',
-      raw: '  Hi there!\nThis content runs over multiple lines...'
+      html: '<p>Hi there!</p>\n<p>This content runs over multiple lines...</p>',
+      raw: '  Hi there!\n\nThis content runs over multiple lines...'
     },
     'second heading': {
       html: '<p>As does this one.\nYup.</p>\n<p>With even more whitespace :O</p>',
-      raw: 'As does this one.\nYup.\nWith even more whitespace :O'
+      raw: 'As does this one.\nYup.\n\nWith even more whitespace :O'
     }
   })
 

@@ -15,8 +15,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "clone": "^1.0.2",
-    "marked": "^0.3.3"
+    "mdast": "^0.26.0",
+    "mdast-html": "^0.1.0"
   },
   "devDependencies": {
     "istanbul": "^0.3.13",
