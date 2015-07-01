@@ -1,41 +1,52 @@
+const html = require('mdast-html')
 const assert = require('assert')
-const marked = require('marked')
-const clone = require('clone')
+const mdast = require('mdast')
 
-module.exports = toObj
+module.exports = mdjson
 
 // map a markdown string to an object
 // with `html` and `raw` fields
 // str -> obj
-function toObj (txt) {
+function mdjson (txt) {
   assert.equal(typeof txt, 'string', 'input should be a markdown string')
-  const lexer = new marked.Lexer()
-  const tokens = lexer.lex(txt)
-  // const parsed = marked.parser(clone(tokens)).split('\n')
+
+  const toHtml = mdast().use(html)
+  const lexer = mdast()
+  const tokens = lexer.parse(txt).children
   const res = {}
   var key = ''
 
-  console.log(marked.parser(clone(tokens)).length)
-
   tokens.forEach(function (token, i) {
     if (token.type === 'heading') {
-      key = token.text
-      const html = []
-      html.links = true
-      res[key] = {html: html, raw: []}
+      key = token.children[0].value
+      res[key] = []
       return
     }
 
     if (!key) return
 
-    res[key].raw.push(token.text)
-    res[key].html.push(token)
+    res[key].push(token)
   })
 
   Object.keys(res).forEach(function (key) {
-    res[key].raw = res[key].raw.join('\n')
-    res[key].html = marked.parser(clone(res[key].html)).trim()
+    const tree = {
+      type: 'root',
+      children: res[key]
+    }
+
+    res[key] = {
+      raw: trimRight(lexer.stringify(tree)),
+      html: trimRight(toHtml.stringify(tree))
+    }
   })
 
   return res
 }
+
+// trim whitespace at the
+// end of a string
+// str -> str
+function trimRight (value) {
+  return value.replace(/\n+$/, '')
+}
+
