@@ -49,4 +49,3 @@ function mdjson (txt) {
 function trimRight (value) {
   return value.replace(/\n+$/, '')
 }
-
