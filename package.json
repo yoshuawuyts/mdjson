@@ -1,6 +1,6 @@
 {
   "name": "mdjson",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Transform markdown to an object where headings are keys",
   "main": "index.js",
   "scripts": {
